@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="demo">
+
+
+
+
+<div ng-controller="CarouselDemoCtrl">
+  <div style="height: 305px">
+    <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+      <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+        <img ng-src="{{slide.image}}" style="margin:auto;">
+        <div class="carousel-caption">
+          <h4>Slide {{slide.id}}</h4>
+          <p>{{slide.text}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <button type="button" class="btn btn-info" ng-click="addSlide()">Add Slide</button>
+      <button type="button" class="btn btn-info" ng-click="randomize()">Randomize slides</button>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="noWrapSlides">
+          Disable Slide Looping
+        </label>
+      </div>
+    </div>
+    <div class="col-md-6">
+      Interval, in milliseconds: <input type="number" class="form-control" ng-model="myInterval">
+      <br />Enter a negative number or 0 to stop the interval.
+    </div>
+  </div>
+</div>
+
+
+
+
+	
+</body>
+<script src="js/angular.min.js"></script>
+<script src="js/ui-bootstrap.js"></script>
+<script src="js/ui-bootstrap-tpls.js"></script>
+<script>
+	var demo=angular.module('demo',[]);
+
+	demo.controller('CarouselDemoCtrl', function ($scope) {
+  $scope.myInterval = 5000;
+  $scope.noWrapSlides = false;
+  $scope.active = 0;
+  var slides = $scope.slides = [];
+  var currIndex = 0;
+
+  $scope.addSlide = function() {
+    var newWidth = 600 + slides.length + 1;
+    slides.push({
+      image: '/img/img' + currIndex + '.jpg',
+      text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
+      id: currIndex++
+    });
+  };
+
+  $scope.randomize = function() {
+    var indexes = generateIndexesArray();
+    assignNewIndexesToSlides(indexes);
+  };
+
+  for (var i = 0; i < 4; i++) {
+    $scope.addSlide();
+  }
+
+  // Randomize logic below
+
+  function assignNewIndexesToSlides(indexes) {
+    for (var i = 0, l = slides.length; i < l; i++) {
+      slides[i].id = indexes.pop();
+    }
+  }
+
+  function generateIndexesArray() {
+    var indexes = [];
+    for (var i = 0; i < currIndex; ++i) {
+      indexes[i] = i;
+    }
+    return shuffle(indexes);
+  }
+
+  // http://stackoverflow.com/questions/962802#962890
+  function shuffle(array) {
+    var tmp, current, top = array.length;
+
+    if (top) {
+      while (--top) {
+        current = Math.floor(Math.random() * (top + 1));
+        tmp = array[current];
+        array[current] = array[top];
+        array[top] = tmp;
+      }
+    }
+
+    return array;
+  }
+});
+</script>
+</html>
+
+
+
+
+
+
+
+<!-- - Carousel创建了一个carousel与bootstrap的image carousel类似
+
+- Carousel也提供了触屏设备的支持，这个需要在swiping表单之下。为了提供swiping支持，需要下载ngtouch模块来进行依赖。
+
+- 使用 <uib-carousel> element with <uib-slide> elements inside it.
+- <uib-carousel>设置
+	- active (默认值为第一个图片) - Index of current active slide.
+	- 间隔时间（默认值为0）：设置一个大于0的值来循环整个图片集
+	- 不间断(Default: false) - The interval pauses on mouseover. Setting this to truthy, disables this pause.
+
+
+
+
+   
+
+    no-transition $ (Default: false) - Whether to disable the transition animation between slides. Setting this to truthy, disables this transition.
+
+    no-wrap $ (Default: false) - Disables the looping of slides. Setting no-wrap to an expression which evaluates to a truthy value will prevent looping.
+
+    template-url (Default: uib/template/carousel/carousel.html) - Add the ability to override the template used on the component.
+
+uib-slide settings
+
+    actual $ (Default: none) - Use this attribute to bind the slide model (or any object of interest) onto the slide scope, which makes it available for customization in the carousel template.
+
+    index $ (Default: none) - The index of the slide. Must be unique.
+
+    template-url (Default: uib/template/carousel/slide.html) - Add the ability to override the template used on the component. -->
+

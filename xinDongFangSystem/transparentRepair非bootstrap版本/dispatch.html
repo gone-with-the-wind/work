@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>调度</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="css/global.css">
+    <link type="text/css" rel="stylesheet" href="css/main.css">
+    
+</head>
+<body ng-app="app">
+<div class="header">
+    <a href="" class="header_user">
+        <img class="header_user_img" src=""><div class="fl">用户名</div>
+    </a>
+    <div class="header_logo">
+        <h1 class="header_logo_title">新东方管理平台</h1>
+    </div>
+</div>
+<div class="nav">
+    <div class="navList">
+        <div class="navList_title">调度</div>
+        <ul class="navList_ul">
+            <li><a href="" class="active">未调度</a></li>
+            <li><a href="">退回案件查询</a></li>
+            <li><a href="">任务查询</a></li>
+        </ul>
+    </div>
+    <div class="navList">
+        <div class="navList_title">调度</div>
+        <ul class="navList_ul">
+            <li><a href="" class="">未调度</a></li>
+            <li><a href="">退回案件查询</a></li>
+            <li><a href="">任务查询</a></li>
+        </ul>
+    </div>
+    <div class="navList">
+        <div class="navList_title">调度</div>
+        <ul class="navList_ul">
+            <li><a href="" class="">未调度</a></li>
+            <li><a href="">退回案件查询</a></li>
+            <li><a href="">任务查询</a></li>
+        </ul>
+    </div>
+</div>
+<div class="python">调度&nbsp;&gt;&nbsp;<a href="">调度管理</a></div>
+<div class="container">
+    <div style="height:30px;padding-bottom:10px;">
+        <a class="btn_sr">新增</a>
+        <a class="btn_sr">编辑</a>
+        <a class="btn_sr">跟踪</a>
+        <a class="btn_sr">导出</a>
+    </div>
+    <!--筛选-->
+    <div class="box_border1">
+        <div class="g-clear">
+            <div class="dpc_screen">
+                <label><span class="dpc_screen_label">委托机构</span>
+                    <select class="select1">
+                        <option>委托机构1</option>
+                        <option>委托机构1</option>
+                        <option>委托机构1</option>
+                        <option>委托机构1</option>
+                        <option>委托机构1</option>
+                    </select>
+                </label>
+            </div>
+            <div class="dpc_screen">
+                <label class="dpc_screen_label">报案号</label>
+                <input class="input1" type="text" placeholder="请输入报案号">
+            </div>
+            <div class="dpc_screen">
+                <label class="dpc_screen_label">车牌号</label>
+                <input class="input1" type="text" placeholder="请输入车牌号">
+            </div>
+            <div class="dpc_screen">
+                <label class="dpc_screen_label">查勘员区域</label>
+                <input class="input1" type="text" placeholder="请输入查勘员区域">
+            </div>
+            <div class="dpc_screen">
+                <label class="dpc_screen_label">状态</label>
+                <input class="input1" type="text" placeholder="状态">
+            </div>
+            <div class="dpc_screen">
+                <label class="dpc_screen_label">查勘员</label>
+                <input class="input1" type="text" placeholder="请输入查勘员">
+            </div>
+            <div class="dpc_screen" ng-controller="DatepickerPopupDemoCtrl">
+                <label class="dpc_screen_label">报案时间</label>
+                <p class="input-group">
+                    <input type="text" class="form-control input2" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+                <div style="float:left;width:20px;text-align:center;">-</div>
+                <input class="input2" type="time" placeholder="例：20170808">
+            </div>
+            <div class="dpc_screen">
+                <div class="fr">
+                    <a class="btn_sl">刷新</a>
+                    <a class="btn_sl">重置</a>
+                    <a class="btn_sl">搜索</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--案件-->
+    <div class="box_border2">
+        <div class="dpc_case">
+            <div class="dpc_case_tableB">
+                <table class="table_striped" style="min-width:1200px;">
+                    <thead>
+                    <tr>
+                        <th>跟踪</th>
+                        <th>状态</th>
+                        <th>委托机构</th>
+                        <th>报案号</th>
+                        <th>事发区域</th>
+                        <th>车牌号</th>
+                        <th>被保险员</th>
+                        <th>查勘员</th>
+                        <th>查勘员电话</th>
+                        <th>调度派发时间</th>
+                        <th>查勘接受时间</th>
+                        <th>跟踪时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>跟踪</td>
+                        <td>状态</td>
+                        <td>委托机构</td>
+                        <td>报案号</td>
+                        <td>事发区域</td>
+                        <td>车牌号</td>
+                        <td>被保险员</td>
+                        <td>查勘员</td>
+                        <td>查勘员电话</td>
+                        <td>调度派发时间</td>
+                        <td>查勘接受时间</td>
+                        <td>跟踪时间</td>
+                    </tr>
+                    <tr>
+                        <td>跟踪</td>
+                        <td>状态</td>
+                        <td>委托机构</td>
+                        <td>报案号</td>
+                        <td>事发区域</td>
+                        <td>车牌号</td>
+                        <td>被保险员</td>
+                        <td>查勘员</td>
+                        <td>查勘员电话</td>
+                        <td>调度派发时间</td>
+                        <td>查勘接受时间</td>
+                        <td>跟踪时间</td>
+                    </tr>
+                    <tr>
+                        <td>跟踪</td>
+                        <td>状态</td>
+                        <td>委托机构</td>
+                        <td>报案号</td>
+                        <td>事发区域</td>
+                        <td>车牌号</td>
+                        <td>被保险员</td>
+                        <td>查勘员</td>
+                        <td>查勘员电话</td>
+                        <td>调度派发时间</td>
+                        <td>查勘接受时间</td>
+                        <td>跟踪时间</td>
+                    </tr>
+                    <tr>
+                        <td>跟踪</td>
+                        <td>状态</td>
+                        <td>委托机构</td>
+                        <td>报案号</td>
+                        <td>事发区域</td>
+                        <td>车牌号</td>
+                        <td>被保险员</td>
+                        <td>查勘员</td>
+                        <td>查勘员电话</td>
+                        <td>调度派发时间</td>
+                        <td>查勘接受时间</td>
+                        <td>跟踪时间</td>
+                    </tr>
+                    <tr>
+                        <td>跟踪</td>
+                        <td>状态</td>
+                        <td>委托机构</td>
+                        <td>报案号</td>
+                        <td>事发区域</td>
+                        <td>车牌号</td>
+                        <td>被保险员</td>
+                        <td>查勘员</td>
+                        <td>查勘员电话</td>
+                        <td>调度派发时间</td>
+                        <td>查勘接受时间</td>
+                        <td>跟踪时间</td>
+                    </tr>
+                    <tr>
+                        <td>跟踪</td>
+                        <td>状态</td>
+                        <td>委托机构</td>
+                        <td>报案号</td>
+                        <td>事发区域</td>
+                        <td>车牌号</td>
+                        <td>被保险员</td>
+                        <td>查勘员</td>
+                        <td>查勘员电话</td>
+                        <td>调度派发时间</td>
+                        <td>查勘接受时间</td>
+                        <td>跟踪时间</td>
+                    </tr>
+                    <tr>
+                        <td>跟踪</td>
+                        <td>状态</td>
+                        <td>委托机构</td>
+                        <td>报案号</td>
+                        <td>事发区域</td>
+                        <td>车牌号</td>
+                        <td>被保险员</td>
+                        <td>查勘员</td>
+                        <td>查勘员电话</td>
+                        <td>调度派发时间</td>
+                        <td>查勘接受时间</td>
+                        <td>跟踪时间</td>
+                    </tr>
+                    <tr>
+                        <td>跟踪</td>
+                        <td>状态</td>
+                        <td>委托机构</td>
+                        <td>报案号</td>
+                        <td>事发区域</td>
+                        <td>车牌号</td>
+                        <td>被保险员</td>
+                        <td>查勘员</td>
+                        <td>查勘员电话</td>
+                        <td>调度派发时间</td>
+                        <td>查勘接受时间</td>
+                        <td>跟踪时间</td>
+                    </tr>
+                    <tr>
+                        <td>跟踪</td>
+                        <td>状态</td>
+                        <td>委托机构</td>
+                        <td>报案号</td>
+                        <td>事发区域</td>
+                        <td>车牌号</td>
+                        <td>被保险员</td>
+                        <td>查勘员</td>
+                        <td>查勘员电话</td>
+                        <td>调度派发时间</td>
+                        <td>查勘接受时间</td>
+                        <td>跟踪时间</td>
+                    </tr>
+                    <tr>
+                        <td>跟踪</td>
+                        <td>状态</td>
+                        <td>委托机构</td>
+                        <td>报案号</td>
+                        <td>事发区域</td>
+                        <td>车牌号</td>
+                        <td>被保险员</td>
+                        <td>查勘员</td>
+                        <td>查勘员电话</td>
+                        <td>调度派发时间</td>
+                        <td>查勘接受时间</td>
+                        <td>跟踪时间</td>
+                    </tr>
+                    <tr>
+                        <td>跟踪</td>
+                        <td>状态</td>
+                        <td>委托机构</td>
+                        <td>报案号</td>
+                        <td>事发区域</td>
+                        <td>车牌号</td>
+                        <td>被保险员</td>
+                        <td>查勘员</td>
+                        <td>查勘员电话</td>
+                        <td>调度派发时间</td>
+                        <td>查勘接受时间</td>
+                        <td>跟踪时间</td>
+                    </tr>
+                    <tr>
+                        <td>跟踪</td>
+                        <td>状态</td>
+                        <td>委托机构</td>
+                        <td>报案号</td>
+                        <td>事发区域</td>
+                        <td>车牌号</td>
+                        <td>被保险员</td>
+                        <td>查勘员</td>
+                        <td>查勘员电话</td>
+                        <td>调度派发时间</td>
+                        <td>查勘接受时间</td>
+                        <td>跟踪时间</td>
+                    </tr>
+                    <tr>
+                        <td>跟踪</td>
+                        <td>状态</td>
+                        <td>委托机构</td>
+                        <td>报案号</td>
+                        <td>事发区域</td>
+                        <td>车牌号</td>
+                        <td>被保险员</td>
+                        <td>查勘员</td>
+                        <td>查勘员电话</td>
+                        <td>调度派发时间</td>
+                        <td>查勘接受时间</td>
+                        <td>跟踪时间</td>
+                    </tr>
+                    <tr>
+                        <td>跟踪</td>
+                        <td>状态</td>
+                        <td>委托机构</td>
+                        <td>报案号</td>
+                        <td>事发区域</td>
+                        <td>车牌号</td>
+                        <td>被保险员</td>
+                        <td>查勘员</td>
+                        <td>查勘员电话</td>
+                        <td>调度派发时间</td>
+                        <td>查勘接受时间</td>
+                        <td>跟踪时间</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/angular.min.js"></script>
+<script src="js/ui-bootstrap-tpls.js"></script>
+<script type="text/javascript">
+    angular.module('app',['ui.bootstrap']).controller('DatepickerPopupDemoCtrl', function ($scope) {
+        $scope.today = function() {
+            $scope.dt = new Date();
+        };
+        $scope.today();
+
+        $scope.clear = function() {
+            $scope.dt = null;
+        };
+
+        $scope.inlineOptions = {
+            
+            minDate: new Date(),
+            
+        };
+
+        $scope.dateOptions = {
+            // dateDisabled: disabled,
+            formatYear: 'yy',
+            maxDate: new Date(2020, 5, 22),
+            minDate: new Date(),
+            startingDay: 0,
+            customClass: getDayClass,
+            showWeeks: true
+        }
+
+  // Disable weekend selection
+  // function disabled(data) {
+  //    var date = data.date,
+  //    mode = data.mode;
+  //    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+  // }
+
+  $scope.toggleMin = function() {
+    $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
+    $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
+  };
+
+  $scope.toggleMin();
+
+  $scope.open1 = function() {
+    $scope.popup1.opened = true;
+  };
+
+  $scope.open2 = function() {
+    $scope.popup2.opened = true;
+  };
+
+  $scope.setDate = function(year, month, day) {
+    $scope.dt = new Date(year, month, day);
+  };
+
+  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+  $scope.format = $scope.formats[0];
+  $scope.altInputFormats = ['M!/d!/yyyy'];
+
+  $scope.popup1 = {
+    opened: false
+  };
+
+  $scope.popup2 = {
+    opened: false
+  };
+
+  var tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  var afterTomorrow = new Date();
+  afterTomorrow.setDate(tomorrow.getDate() + 1);
+  $scope.events = [
+  {
+    date: tomorrow,
+    status: 'full'
+  },
+  {
+    date: afterTomorrow,
+    status: 'partially'
+  }
+  ];
+
+  function getDayClass(data) {
+    var date = data.date,
+    mode = data.mode;
+    if (mode === 'day') {
+        var dayToCheck = new Date(date).setHours(0,0,0,0);
+
+        for (var i = 0; i < $scope.events.length; i++) {
+            var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+
+            if (dayToCheck === currentDay) {
+                return $scope.events[i].status;
+            }
+        }
+    }
+
+    return '';
+  }
+});
+    
+</script>
+</html>

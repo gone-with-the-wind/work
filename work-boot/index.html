@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<style>
+		#mymodel>.modal-dialog>.modal-content{
+			width: 500px;
+			height: 600px;
+		}
+	</style>
+</head>
+<body>
+	<button class="btn-primary" data-loading-text="..." type="button" id="loadingBtn">加载</button>
+	
+	<script src="jquery.min.js"></script>
+	<script src="bootstrap.min.js"></script>
+	<script>
+		$(function(){
+			$("#loadingBtn").click(function(){
+				$(this).button("loading");
+			})
+		})
+	</script>
+</body>
+</html>

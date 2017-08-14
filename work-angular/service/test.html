@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.min.js"></script> 
+	<script>
+		var app = angular.module('myApp', []); 
+      
+    	app.controller('PlayerController', ['$scope', function($scope){ 
+    		$scope.playing = false; 
+    		$scope.audio = document.createElement('audio'); 
+    		$scope.audio.src = '/media/npr.mp4'; 
+    		$scope.play=function(){
+    			$scope.audio.play();
+    			$scope.playing=false;
+    		}
+    		$scope.pause=function(){
+    			$scope.audio.pause();
+    			$scope.playing=true;
+    		}
+
+    		$scope.audio.addEventListener("ended",function(){
+    			$scope.$apply(function(){
+    				$scope.stop();
+    			})
+    		})
+    	}]); 
+      
+    	
+        var apiKey = 'YOUR_KEY', 
+        nprUrl = 'http://api.npr.org/query?id=61&fields=relatedLink,title,byline,text,audio,image,pullQuote,all&output=JSON'; 
+      
+    app.controller('PlayerController', function($scope, $http) { 
+      // Hidden our previous section's content 
+      // construct our http request 
+      $http({ 
+        method: 'JSONP', 
+        url: nprUrl + '&apiKey=' + apiKey + '&callback=JSON_CALLBACK' 
+      }).success(function(data, status) { 
+        // Now we have a list of the stories (data.list.story) 
+        // in the data object that the NPR API 
+        // returns in JSON that looks like: 
+        // data: { "list": { 
+        //   "title": ... 
+        //   "story": [ 
+        //     { "id": ... 
+        //       "title": ... 
+      }).error(function(data, status) { 
+        // Some error occurred 
+      }); 
+    }); 
+	</script>
+</head>
+<body ng-app="myApp"> 
+	<div ng-controller="PlayerController"> 
+    <button ng-click="play()" class="button" ng-show="!playing">Play</button> 
+    <button ng-click="stop()" class="button alert" ng-show="playing">Stop</button> 
+    Playing audio: <b>{{ playing }}</b> 
+    </div> 
+
+        <div ng-controller="MyController"> 
+      <input type="text" ng-model="clock" placeholder="Enter your name" /> 
+      <h5>Hello {{clock}}</h5> 
+    </div> 
+</body> 
+</html>
+
+
+
